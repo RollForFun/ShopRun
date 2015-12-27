@@ -1,16 +1,18 @@
 'use strict';
 
 export default function(sequelize, DataTypes) {
-  var Shop = sequelize.define('Shop', {
+  var Coupon = sequelize.define('Coupon', {
     _id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    shopName: DataTypes.STRING,
+    couponCode: DataTypes.STRING,
     shortDescription: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
+    startValidDate: DataTypes.DATE,
+    endValidDate: DataTypes.DATE,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     delete: DataTypes.BOOLEAN,
@@ -18,9 +20,9 @@ export default function(sequelize, DataTypes) {
   },{
     classMethods: {
       associate: function(models) {
-        Shop.hasMany(models.Coupon);
+        Coupon.belongsTo(models.Shop);
       }
     }
   });
-  return Shop;
+  return Coupon;
 }

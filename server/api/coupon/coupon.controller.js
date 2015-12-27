@@ -11,7 +11,6 @@
 
 import _ from 'lodash';
 var sqldb = require('../../sqldb');
-var Shop = sqldb.Shop;
 var Coupon = sqldb.Coupon;
 
 function handleError(res, statusCode) {
@@ -63,20 +62,17 @@ function removeEntity(res) {
 
 // Gets a list of Things
 export function index(req, res) {
-  Shop.findAll()
+  Coupon.findAll()
     .then(responseWithResult(res))
     .catch(handleError(res));
 }
-
+/*
 // Gets a single Thing from the DB
 export function show(req, res) {
   Shop.find({
     where: {
       _id: req.params.id
-    },
-    include: [{
-      model: Coupon
-    }]
+    }
   })
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
@@ -117,3 +113,4 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+*/

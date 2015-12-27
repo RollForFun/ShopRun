@@ -8,6 +8,7 @@ import sqldb from '../sqldb';
 var Thing = sqldb.Thing;
 var User = sqldb.User;
 var Shop = sqldb.Shop;
+var Coupon = sqldb.Coupon;
 
 sqldb.sequelize.sync()
   .then(() => {
@@ -15,6 +16,9 @@ sqldb.sequelize.sync()
   })
   .then(() => {
     return Shop.destroy({ where: {} });
+  })
+  .then(() => {
+    return Coupon.destroy({ where: {} });
   })
   .then(() => {
     return Thing.bulkCreate([{
@@ -48,6 +52,7 @@ sqldb.sequelize.sync()
   })
   .then(() => {
     return Shop.bulkCreate([{
+      _id: 1,
       shopName: 'Ecco',
       shortDescription: 'Ecco is the best shoes\' store in Canada',
       imageUrl: 'test url (add later)',
@@ -55,8 +60,21 @@ sqldb.sequelize.sync()
       updatedAt: '2015-12-27',
       delete: false,
       active: true
-    }
-    ]);
+    }]);
+  })
+  .then(() => {
+    return Coupon.bulkCreate([{
+      ShopId: 1,
+      couponCode: 'slj34u09239ujfsl93843242',
+      shortDescription: 'short description for coupon',
+      imageUrl: 'image url',
+      startValidDate: '2015-12-27',
+      endValidDate: '2016-1-27',
+      createdAt: '2015-12-27',
+      updatedAt: '2015-12-27',
+      delete: false,
+      active: true
+    }]);
   })
   .then(() => {
     console.log('finished populating shops');
