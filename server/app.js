@@ -15,6 +15,13 @@ if (config.seedDB) { require('./config/seed'); }
 // Setup server
 var app = express();
 var server = http.createServer(app);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var socketio = require('socket.io')(server, {
   serveClient: config.env !== 'production',
   path: '/socket.io-client'

@@ -1,5 +1,33 @@
 angular.module('starter.controllers', [])
 
+.controller('LoginCtrl', function($scope, Auth, $state, $window) {
+  $scope.user = {};
+  $scope.errors = {};
+
+  $scope.login = function(form) {
+    $scope.submitted = true;
+
+    if (form.$valid) {
+      Auth.login({
+        email: $scope.user.email,
+        password: $scope.user.password
+      })
+      .then(function() {
+        console.log("login success")
+        // Logged in, redirect to home
+        $state.go('tab.chats');
+      })
+      .catch(function(err) {
+        $scope.errors.other = err.message;
+      });
+    }
+  };
+
+  $scope.loginOauth = function(provider) {
+    $window.location.href = '/auth/' + provider;
+  };
+})
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
