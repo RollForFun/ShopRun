@@ -20,6 +20,7 @@ function handleError(res, statusCode) {
   };
 }
 
+
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
