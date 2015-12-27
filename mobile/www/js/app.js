@@ -87,7 +87,7 @@ angular.module('starter', ['ionic',
 
     .state('logout', {
       url: '/logout',
-      template: '',
+      template: '<ion-view cache-view="false" view-title="Log out"></ion-view>',
       controller: function($state, Auth) {
         Auth.logout();
         $state.go('login');
