@@ -7,10 +7,14 @@
 import sqldb from '../sqldb';
 var Thing = sqldb.Thing;
 var User = sqldb.User;
+var Shop = sqldb.Shop;
 
-Thing.sync()
+sqldb.sequelize.sync()
   .then(() => {
     return Thing.destroy({ where: {} });
+  })
+  .then(() => {
+    return Shop.destroy({ where: {} });
   })
   .then(() => {
     Thing.bulkCreate([{
@@ -41,6 +45,18 @@ Thing.sync()
       info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
              'and openshift subgenerators'
     }]);
+  })
+  .then(() => {
+    Shop.bulkCreate([{
+      shopName: 'Ecco',
+      shortDescription: 'Ecco is the best shoes\' store in Canada',
+      imageUrl: 'test url (add later)',
+      createdAt: '2015-12-27',
+      updatedAt: '2015-12-27',
+      delete: false,
+      active: true
+    }
+    ]);
   });
 
 User.sync()
