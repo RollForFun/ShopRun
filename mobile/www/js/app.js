@@ -132,6 +132,16 @@ angular.module('starter', ['ionic',
       }
     })
 
+    .state('tab.discover', {
+      url: '/discover',
+      views: {
+        'tab-discover': {
+          templateUrl: 'templates/tab-discover.html',
+          controller: 'DiscoverCtrl'
+        }
+      }
+    })
+
     .state('tab.me', {
       url: '/me',
       views: {

@@ -54,7 +54,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, ApiUrl, $http) {
+  $scope.feeds = [];
+  $http.get(ApiUrl.get() + '/api/things')
+  .then(function(res) {
+    console.log(res);
+    $scope.feeds = res.data;
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -73,6 +83,18 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+})
+
+.controller('DiscoverCtrl', function($scope, ApiUrl, $http) {
+  $scope.shops = [];
+  $http.get(ApiUrl.get() + '/api/shops')
+  .then(function(res) {
+    console.log(res);
+    $scope.shops = res.data;
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 })
 
 .controller('MeCtrl', function($scope, Auth) {
