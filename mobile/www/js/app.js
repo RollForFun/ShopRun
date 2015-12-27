@@ -80,31 +80,40 @@ angular.module('starter', ['ionic',
   $stateProvider
 
     .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-  })
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
+
+    .state('logout', {
+      url: '/logout',
+      template: '',
+      controller: function($state, Auth) {
+        Auth.logout();
+        $state.go('login');
+      }
+    })
 
   // setup an abstract state for the tabs directive
     .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+    .state('tab.dash', {
+      url: '/dash',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/tab-dash.html',
+          controller: 'DashCtrl'
+        }
       }
-    }
-  })
+    })
 
-  .state('tab.chats', {
+    .state('tab.chats', {
       url: '/chats',
       views: {
         'tab-chats': {
@@ -123,15 +132,15 @@ angular.module('starter', ['ionic',
       }
     })
 
-  .state('tab.me', {
-    url: '/me',
-    views: {
-      'tab-me': {
-        templateUrl: 'templates/tab-me.html',
-        controller: 'MeCtrl'
+    .state('tab.me', {
+      url: '/me',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/tab-me.html',
+          controller: 'MeCtrl'
+        }
       }
-    }
-  });
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, Auth, $state, $window) {
+.controller('LoginCtrl', function($scope, Auth, $state) {
   $scope.user = {};
   $scope.errors = {};
 
@@ -21,10 +21,6 @@ angular.module('starter.controllers', [])
         $scope.errors.other = err.message;
       });
     }
-  };
-
-  $scope.loginOauth = function(provider) {
-    $window.location.href = '/auth/' + provider;
   };
 })
 
