@@ -65,10 +65,10 @@ export function index(req, res) {
     .then(responseWithResult(res))
     .catch(handleError(res));
 }
-/*
+
 // Gets a single Thing from the DB
 export function show(req, res) {
-  Thing.find({
+  Shop.find({
     where: {
       _id: req.params.id
     }
@@ -80,7 +80,7 @@ export function show(req, res) {
 
 // Creates a new Thing in the DB
 export function create(req, res) {
-  Thing.create(req.body)
+  Shop.create(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 }
@@ -90,7 +90,7 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Thing.find({
+  Shop.find({
     where: {
       _id: req.params.id
     }
@@ -103,7 +103,7 @@ export function update(req, res) {
 
 // Deletes a Thing from the DB
 export function destroy(req, res) {
-  Thing.find({
+  Shop.find({
     where: {
       _id: req.params.id
     }
@@ -112,4 +112,3 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
-*/

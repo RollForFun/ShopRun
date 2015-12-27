@@ -17,7 +17,7 @@ sqldb.sequelize.sync()
     return Shop.destroy({ where: {} });
   })
   .then(() => {
-    Thing.bulkCreate([{
+    return Thing.bulkCreate([{
       name: 'Development Tools',
       info: 'Integration with popular tools such as Bower, Grunt, Babel, Karma, ' +
              'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +
@@ -47,7 +47,7 @@ sqldb.sequelize.sync()
     }]);
   })
   .then(() => {
-    Shop.bulkCreate([{
+    return Shop.bulkCreate([{
       shopName: 'Ecco',
       shortDescription: 'Ecco is the best shoes\' store in Canada',
       imageUrl: 'test url (add later)',
@@ -57,6 +57,9 @@ sqldb.sequelize.sync()
       active: true
     }
     ]);
+  })
+  .then(() => {
+    console.log('finished populating shops');
   });
 
 User.sync()
