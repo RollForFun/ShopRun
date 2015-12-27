@@ -87,7 +87,8 @@ angular.module('starter', ['ionic',
 
     .state('logout', {
       url: '/logout',
-      template: '<ion-view cache-view="false" view-title="Log out"></ion-view>',
+      cache: false,
+      template: '',
       controller: function($state, Auth) {
         Auth.logout();
         $state.go('login');
@@ -152,10 +153,14 @@ angular.module('starter', ['ionic',
       }
     })
 
-    .state('shop_detail', {
+    .state('tab.shop_detail', {
       url: '/shop/:shopId',
-      templateUrl: 'templates/shop-detail.html',
-      controller: 'ShopDetailCtrl'
+      views: {
+        'tab-discover': {
+          templateUrl: 'templates/shop-detail.html',
+          controller: 'ShopDetailCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback

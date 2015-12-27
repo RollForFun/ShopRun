@@ -106,7 +106,7 @@ angular.module('starter.controllers', [])
 
 .controller('ShopDetailCtrl', function($scope, $stateParams, ApiUrl, $http) {
   $scope.shop = {};
-  $http.get(ApiUrl.get() + '/api/shop/' + $stateParams.shopId)
+  $http.get(ApiUrl.get() + '/api/shops/' + $stateParams.shopId)
   .then(function(res) {
     console.log(res);
     $scope.shop = res.data;

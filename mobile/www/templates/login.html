@@ -1,90 +1,92 @@
-<ion-content>
-  <form class="form" name="register_form" ng-submit="register(register_form)" style="margin-top: 100px;" novalidate>
+<ion-view view-title="Sign up">
+  <ion-content>
+    <form class="form" name="register_form" ng-submit="register(register_form)" style="margin-top: 100px;" novalidate>
 
-      <div class="form-group" ng-class="{ 'has-success': register_form.name.$valid && submitted,
-                                          'has-error': register_form.name.$invalid && submitted }">
-        <label>Name</label>
+        <div class="form-group" ng-class="{ 'has-success': register_form.name.$valid && submitted,
+                                            'has-error': register_form.name.$invalid && submitted }">
+          <label>Name</label>
 
-        <input type="text" name="name" class="form-control" ng-model="user.name"
-               required/>
-        <p class="help-block" ng-show="register_form.name.$error.required && submitted">
-          A name is required
-        </p>
-      </div>
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+                 required/>
+          <p class="help-block" ng-show="register_form.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div>
 
-      <div class="form-group" ng-class="{ 'has-success': register_form.email.$valid && submitted,
-                                          'has-error': register_form.email.$invalid && submitted }">
-        <label>Email</label>
+        <div class="form-group" ng-class="{ 'has-success': register_form.email.$valid && submitted,
+                                            'has-error': register_form.email.$invalid && submitted }">
+          <label>Email</label>
 
-        <input type="email" name="email" class="form-control" ng-model="user.email"
-               required
-               mongoose-error/>
-        <p class="help-block" ng-show="register_form.email.$error.email && submitted">
-          Doesn't look like a valid email.
-        </p>
-        <p class="help-block" ng-show="register_form.email.$error.required && submitted">
-          What's your email address?
-        </p>
-        <p class="help-block" ng-show="register_form.email.$error.mongoose">
-          {{ vm.errors.email }}
-        </p>
-      </div>
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="register_form.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="register_form.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="register_form.email.$error.mongoose">
+            {{ vm.errors.email }}
+          </p>
+        </div>
 
-      <div class="form-group" ng-class="{ 'has-success': register_form.password.$valid && submitted,
-                                          'has-error': register_form.password.$invalid && submitted }">
-        <label>Password</label>
+        <div class="form-group" ng-class="{ 'has-success': register_form.password.$valid && submitted,
+                                            'has-error': register_form.password.$invalid && submitted }">
+          <label>Password</label>
 
-        <input type="password" name="password" class="form-control" ng-model="user.password"
-               ng-minlength="3"
-               required
-               mongoose-error/>
-        <p class="help-block"
-           ng-show="(register_form.password.$error.minlength || register_form.password.$error.required) && submitted">
-          Password must be at least 3 characters.
-        </p>
-        <p class="help-block" ng-show="register_form.password.$error.mongoose">
-          {{ errors.password }}
-        </p>
-      </div>
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+                 ng-minlength="3"
+                 required
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(register_form.password.$error.minlength || register_form.password.$error.required) && submitted">
+            Password must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="register_form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
 
-      <div class="form-group" ng-class="{ 'has-success': register_form.confirmPassword.$valid && submitted,
-                                          'has-error': register_form.confirmPassword.$invalid && submitted }">
-        <label>Confirm Password</label>
-        <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword"
-               match="user.password"
-               ng-minlength="3" required/>
-        <p class="help-block"
-           ng-show="register_form.confirmPassword.$error.match && submitted">
-          Passwords must match.
-        </p>
-      </div>
+        <div class="form-group" ng-class="{ 'has-success': register_form.confirmPassword.$valid && submitted,
+                                            'has-error': register_form.confirmPassword.$invalid && submitted }">
+          <label>Confirm Password</label>
+          <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword"
+                 match="user.password"
+                 ng-minlength="3" required/>
+          <p class="help-block"
+             ng-show="register_form.confirmPassword.$error.match && submitted">
+            Passwords must match.
+          </p>
+        </div>
 
-      <div>
-        <button class="btn btn-inverse btn-lg btn-register" type="submit">
-          Sign up
-        </button>
-      </div>
-    </form>
-    <form name="form" ng-submit="login(form)" novalidate>
-      <div class="form-group">
-        <label class="item item-input">
-            <input type="email" name="email" class="form-control" placeholder="Email" ng-model="user.email" required>
-        </label>
-      </div>
-      <div class="form-group">
-        <label class="item item-input">
-            <input type="password" name="password" class="form-control" placeholder="Password" ng-model="user.password" required>
-        </label>
-      </div>
-      <div class="form-group has-error">
-        <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
-           Please enter your email and password.
-        </p>
-        <p class="help-block" ng-show="form.email.$error.email && submitted">
-           Please enter a valid email.
-        </p>
-        <p class="help-block">{{ errors.other }}</p>
-      </div>
-      <button class="button button-block button-calm" type="submit">Login</button>
-    </form>
-</ion-content>
+        <div>
+          <button class="btn btn-inverse btn-lg btn-register" type="submit">
+            Sign up
+          </button>
+        </div>
+      </form>
+      <form name="form" ng-submit="login(form)" novalidate>
+        <div class="form-group">
+          <label class="item item-input">
+              <input type="email" name="email" class="form-control" placeholder="Email" ng-model="user.email" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="item item-input">
+              <input type="password" name="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+          </label>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
+             Please enter your email and password.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.email && submitted">
+             Please enter a valid email.
+          </p>
+          <p class="help-block">{{ errors.other }}</p>
+        </div>
+        <button class="button button-block button-calm" type="submit">Login</button>
+      </form>
+  </ion-content>
+</ion-view>
