@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
       .then(function() {
         console.log("login success")
         // Logged in, redirect to home
-        $state.go('tab.chats');
+        $state.go('tab.me');
       })
       .catch(function(err) {
         $scope.errors.other = err.message;
@@ -49,7 +49,8 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('MeCtrl', function($scope, Auth) {
+  $scope.getCurrentUser = Auth.getCurrentUser;
   $scope.settings = {
     enableFriends: true
   };
