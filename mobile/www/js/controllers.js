@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, Auth, $state) {
@@ -19,6 +21,34 @@ angular.module('starter.controllers', [])
       })
       .catch(function(err) {
         $scope.errors.other = err.message;
+      });
+    }
+  };
+
+  $scope.register = function(form) {
+    $scope.submitted = true;
+
+    if (form.$valid) {
+      Auth.createUser({
+        name: $scope.user.name,
+        email: $scope.user.email,
+        password: $scope.user.password
+      })
+      .then(function() {
+        // Account created, redirect to home
+        $state.go('tab.me');
+      })
+      .catch(function(err) {
+        var err = err.data;
+        $scope.errors = {};
+
+        // Update validity of form fields that match the sequelize errors
+        if (err.name) {
+          angular.forEach(err.fields, field => {
+            form[field].$setValidity('mongoose', false);
+            this.errors[field] = err.message;
+          });
+        }
       });
     }
   };
