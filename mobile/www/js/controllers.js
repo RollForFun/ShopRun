@@ -102,4 +102,16 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('ShopDetailCtrl', function($scope, $stateParams, ApiUrl, $http) {
+  $scope.shop = {};
+  $http.get(ApiUrl.get() + '/api/shop/' + $stateParams.shopId)
+  .then(function(res) {
+    console.log(res);
+    $scope.shop = res.data;
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 });

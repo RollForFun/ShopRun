@@ -2,11 +2,13 @@
   <ion-content class="padding">
     <div ng-repeat="shop in shops" class="list card">
       <div class="item item-divider">{{ shop.shopName }}</div>
-      <div class="item item-body">
-        <div>
-          {{ shop.shortDescription }}
+      <a ui-sref="shop_detail({shopId: shop._id})">
+        <div class="item item-body">
+          <div>
+            {{ shop.shortDescription }}
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </ion-content>
 </ion-view>

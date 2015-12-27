@@ -150,6 +150,12 @@ angular.module('starter', ['ionic',
           controller: 'MeCtrl'
         }
       }
+    })
+
+    .state('shop_detail', {
+      url: '/shop/:shopId',
+      templateUrl: 'templates/shop-detail.html',
+      controller: 'ShopDetailCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback
