@@ -51,16 +51,14 @@ sqldb.sequelize.sync()
     }]);
   })
   .then(() => {
-    return Shop.bulkCreate([{
+    return Shop.create({
       _id: 1,
       shopName: 'Ecco',
       shortDescription: 'Ecco is the best shoes\' store in Canada',
       imageUrl: 'test url (add later)',
-      createdAt: '2015-12-27',
-      updatedAt: '2015-12-27',
       delete: false,
       active: true
-    }]);
+    });
   })
   .then(() => {
     return Coupon.bulkCreate([{
@@ -83,7 +81,7 @@ sqldb.sequelize.sync()
 User.sync()
   .then(() => User.destroy({ where: {} }))
   .then(() => {
-    User.bulkCreate([{
+    return User.bulkCreate([{
       provider: 'local',
       name: 'Test User',
       email: 'test@example.com',
