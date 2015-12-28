@@ -17,5 +17,12 @@ var db = {
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
 db.Shop = db.sequelize.import('../api/shop/shop.model');
+db.Coupon = db.sequelize.import('../api/coupon/coupon.model');
+
+Object.keys(db).forEach(function(modelName) {
+  if('associate' in db[modelName]) {
+    db[modelName].associate(db);
+  }
+});
 
 export default db;
