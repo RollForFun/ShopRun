@@ -11,11 +11,10 @@ export default function(sequelize, DataTypes) {
     shopName: DataTypes.STRING,
     shortDescription: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
     delete: DataTypes.BOOLEAN,
     active: DataTypes.BOOLEAN
   },{
+    timestamps: true,
     classMethods: {
       associate: function(models) {
         Shop.hasMany(models.Coupon);
