@@ -83,7 +83,7 @@ sqldb.sequelize.sync()
 User.sync()
   .then(() => User.destroy({ where: {} }))
   .then(() => {
-    User.bulkCreate([{
+    return User.bulkCreate([{
       provider: 'local',
       name: 'Test User',
       email: 'test@example.com',

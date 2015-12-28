@@ -2,6 +2,15 @@
   <ion-content class="padding">
   <h3>{{ shop.shopName }}</h3>
   <p>{{ shop.shortDescription }}</p>
-  {{ shop }}
+  <div ng-repeat="coupon in shop.Coupons" class="list card">
+    <div class="item item-divider">Coupon: {{ coupon.couponCode }}</div>
+    <a ui-sref="tab.shop_detail({couponId: coupon._id})">
+      <div class="item item-body">
+        <div>
+          {{ coupon | json }}
+        </div>
+      </div>
+    </a>
+  </div>
   </ion-content>
 </ion-view>

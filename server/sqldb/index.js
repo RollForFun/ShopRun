@@ -14,6 +14,7 @@ var db = {
 };
 
 // Insert models below
+db.UserCoupon = db.sequelize.import('../api/userCoupon/userCoupon.model');
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
 db.Shop = db.sequelize.import('../api/shop/shop.model');

@@ -50,6 +50,12 @@ angular.module('starter', ['ionic',
         }
       });
     }
+    else if(next.showBackBtn) {
+      angular.element(document.getElementById('ion-nav-bar')).find('button').removeClass('hide');
+    }
+    else {
+      angular.element(document.getElementById('ion-nav-bar')).find('button').addClass('hide');
+    }
   });
 })
 
@@ -125,6 +131,7 @@ angular.module('starter', ['ionic',
     })
     .state('tab.chat-detail', {
       url: '/chats/:chatId',
+      showBackBtn: true,
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
@@ -145,6 +152,7 @@ angular.module('starter', ['ionic',
 
     .state('tab.me', {
       url: '/me',
+      authenticate: true,
       views: {
         'tab-me': {
           templateUrl: 'templates/tab-me.html',
@@ -153,17 +161,14 @@ angular.module('starter', ['ionic',
       }
     })
 
-    .state('tab.shop_detail', {
+    .state('shop_detail', {
       url: '/shop/:shopId',
-      views: {
-        'tab-discover': {
-          templateUrl: 'templates/shop-detail.html',
-          controller: 'ShopDetailCtrl'
-        }
-      }
+      showBackBtn: true,
+      templateUrl: 'templates/shop-detail.html',
+      controller: 'ShopDetailCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('tab.me');
 
 });
