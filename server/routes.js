@@ -15,6 +15,7 @@ export default function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/shops', require('./api/shop'));
   app.use('/api/coupons', require('./api/coupon'));
+  app.use('/api/feeds', require('./api/feed'));
 
   app.use('/auth', require('./auth'));
 

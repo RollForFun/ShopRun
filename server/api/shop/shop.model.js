@@ -18,6 +18,7 @@ export default function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Shop.hasMany(models.Coupon);
+        Shop.belongsToMany(models.User, {'through': models.Feed});
       }
     }
   });

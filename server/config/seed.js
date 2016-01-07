@@ -9,6 +9,7 @@ var Thing = sqldb.Thing;
 var User = sqldb.User;
 var Shop = sqldb.Shop;
 var Coupon = sqldb.Coupon;
+var Feed = sqldb.Feed;
 
 sqldb.sequelize.sync()
   .then(() => {
@@ -19,6 +20,9 @@ sqldb.sequelize.sync()
   })
   .then(() => {
     return Coupon.destroy({ where: {} });
+  })
+  .then(() => {
+    return Feed.destroy({ where: {} });
   })
   .then(() => {
     return Thing.bulkCreate([{
@@ -76,6 +80,15 @@ sqldb.sequelize.sync()
   })
   .then(() => {
     console.log('finished populating shops');
+  })
+  .then(() => {
+    return Feed.create({
+      _id: 1,
+      amount: 1
+    });
+  })
+  .then(() => {
+    console.log('finished populating feeds');
   });
 
 User.sync()
