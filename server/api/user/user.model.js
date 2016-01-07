@@ -44,11 +44,6 @@ module.exports = function(sequelize, DataTypes) {
     github: DataTypes.TEXT
 
   }, {
-    classMethods: {
-      associate: function(models) {
-        User.belongsToMany(models.Shop, {'through': models.Feed});
-      }
-    },
     /**
      * Virtual Getters
      */
@@ -102,6 +97,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         User.hasMany(models.UserCoupon);
+        User.belongsToMany(models.Shop, {'through': models.Feed});
       }
     },
 
